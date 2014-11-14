@@ -42,3 +42,6 @@ doc/build/*
 NuGet.Exe
 
 nuspecs/
+*.cache
+*.suo
+*.user

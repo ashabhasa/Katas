@@ -45,24 +45,24 @@ namespace RockPaperScissor
         [Test]
         public void SameMoveIsDraw()
         {
-            Assert.IsNull(_rock.Beats(new Rock()));
-            Assert.IsNull(_paper.Beats(new Paper()));
-            Assert.IsNull(_scissor.Beats(new Scissor()));
+            Assert.IsNull(_rock.BeatsRock());
+            Assert.IsNull(_paper.BeatsPaper());
+            Assert.IsNull(_scissor.BeatsScissor());
         }
 
 
         [Test]
         public void PlayerCanInputMove()
         {
-            var player1 = new Player(new Rock());
-            Assert.AreEqual(new Rock(), player1.GetMove());
+            var player = new Player {GameMove = _rock};
+            Assert.AreEqual(new Rock(), player.GameMove);
         }
 
         [Test]
         public void PlayerGetsCorrectInputMove()
         {
-            var player2 = new Player(new Scissor());
-            Assert.AreNotEqual(new Rock(), player2.GetMove());
+            var player = new Player {GameMove = _scissor};
+            Assert.AreNotEqual(new Rock(), player.GameMove);
         }
 
         [Test]
@@ -71,12 +71,25 @@ namespace RockPaperScissor
             var moves = new List<IGameMove>();
 
             var list = Enumerable.Range(0, 10).ToList();
-            list.ForEach(i => moves.Add(AiPlayer.Create().GetMove()));
+            list.ForEach(i => moves.Add(AiPlayer.Create().GameMove));
             
-            Assert.Contains(new Rock(), moves);
-            Assert.Contains(new Scissor(), moves);
-            Assert.Contains(new Paper(), moves);
+            Assert.Contains(_rock, moves);
+            Assert.Contains(_scissor, moves);
+            Assert.Contains(_paper, moves);
 
+        }
+
+
+        [Test]
+        public void KeepRunnigScore()
+        {
+            var player1 = new Player {GameMove = _paper};
+            var player2 = new Player{GameMove = _rock};
+
+            player1.Vs(player2);
+
+            Assert.AreEqual(1, player1.GetScore());
+            //Assert.AreEqual(0, player2.GetScore());
         }
     }
 
@@ -88,48 +101,59 @@ namespace RockPaperScissor
         public static Player Create()
         {
             var next = Random.Next(0, AvailableMoves.Length);
-            return new Player(AvailableMoves[next]);
+            return new Player{GameMove = AvailableMoves[next]};
         }
     }
 
     public class Player
     {
-        private readonly IGameMove _gMove;
+        private int _score;
+        public IGameMove GameMove { get; set; }
 
-        public Player(IGameMove gMove)
+        public int GetScore()
         {
-            _gMove = gMove;
+            return  _score;
         }
 
-        public IGameMove GetMove()
+        public void Vs(Player player2)
         {
-            return _gMove;
+            var res = GameMove.Beats(player2.GameMove);
+            if (res.GetValueOrDefault())
+            {
+                _score = _score + 1;
+            }
         }
     }
 
 
     public interface IGameMove
     {
-        bool? Beats(Paper paper);
-        bool? Beats(Rock rock);
-        bool? Beats(Scissor scissor);
+        bool? BeatsPaper();
+        bool? BeatsRock();
+        bool? BeatsScissor();
+        bool? Beats(IGameMove move);
     }
 
     public class Scissor : IGameMove, IEquatable<Scissor>
     {
-        public bool? Beats(Paper paper)
+        public bool? BeatsPaper()
         {
             return true;
         }
 
-        public bool? Beats(Rock rock)
+        public bool? BeatsRock()
         {
             return false;
         }
 
-        public bool? Beats(Scissor scissor)
+        public bool? BeatsScissor()
         {
             return null;
+        }
+
+        public bool? Beats(IGameMove move)
+        {
+            return !move.BeatsScissor();
         }
 
         public bool Equals(Scissor other)
@@ -141,17 +165,22 @@ namespace RockPaperScissor
 
     public class Paper : IGameMove, IEquatable<Paper>
     {
-        public bool? Beats(Rock rock)
+        public bool? BeatsRock()
         {
             return true;
         }
 
-        public bool? Beats(Scissor scissor)
+        public bool? BeatsScissor()
         {
             return false;
         }
 
-        public bool? Beats(Paper paper)
+        public bool? Beats(IGameMove move)
+        {
+            return !move.BeatsPaper();
+        }
+
+        public bool? BeatsPaper()
         {
             return null;
         }
@@ -164,17 +193,22 @@ namespace RockPaperScissor
 
     public class Rock : IGameMove, IEquatable<Rock>
     {
-        public bool? Beats(Scissor scissor)
+        public bool? BeatsScissor()
         {
             return true;
         }
 
-        public bool? Beats(Paper paper)
+        public bool? Beats(IGameMove move)
+        {
+            return !move.BeatsRock();
+        }
+
+        public bool? BeatsPaper()
         {
             return false;
         }
 
-        public bool? Beats(Rock rock)
+        public bool? BeatsRock()
         {
             return null;
         }

@@ -1,7 +1,0 @@
-C:\dev\katas\CheckoutKata\bin\Debug\CheckoutKata.dll
-C:\dev\katas\CheckoutKata\bin\Debug\CheckoutKata.pdb
-C:\dev\katas\CheckoutKata\bin\Debug\nunit.framework.dll
-C:\dev\katas\CheckoutKata\bin\Debug\nunit.framework.xml
-C:\dev\katas\CheckoutKata\obj\Debug\CheckoutKata.csprojResolveAssemblyReference.cache
-C:\dev\katas\CheckoutKata\obj\Debug\CheckoutKata.dll
-C:\dev\katas\CheckoutKata\obj\Debug\CheckoutKata.pdb

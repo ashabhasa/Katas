@@ -1,0 +1,7 @@
+C:\dev\katas\RockPaperScissor\bin\Debug\RockPaperScissor.dll
+C:\dev\katas\RockPaperScissor\bin\Debug\RockPaperScissor.pdb
+C:\dev\katas\RockPaperScissor\bin\Debug\nunit.framework.dll
+C:\dev\katas\RockPaperScissor\bin\Debug\nunit.framework.xml
+C:\dev\katas\RockPaperScissor\obj\Debug\RockPaperScissor.csprojResolveAssemblyReference.cache
+C:\dev\katas\RockPaperScissor\obj\Debug\RockPaperScissor.dll
+C:\dev\katas\RockPaperScissor\obj\Debug\RockPaperScissor.pdb

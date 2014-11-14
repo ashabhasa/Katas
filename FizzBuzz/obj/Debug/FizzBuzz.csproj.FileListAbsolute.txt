@@ -1,0 +1,7 @@
+C:\dev\Katas\FizzBuzz\bin\Debug\FizzBuzz.dll
+C:\dev\Katas\FizzBuzz\bin\Debug\FizzBuzz.pdb
+C:\dev\Katas\FizzBuzz\bin\Debug\nunit.framework.dll
+C:\dev\Katas\FizzBuzz\bin\Debug\nunit.framework.xml
+C:\dev\Katas\FizzBuzz\obj\Debug\FizzBuzz.dll
+C:\dev\Katas\FizzBuzz\obj\Debug\FizzBuzz.pdb
+C:\dev\Katas\FizzBuzz\obj\Debug\FizzBuzz.csprojResolveAssemblyReference.cache

@@ -1,7 +1,0 @@
-C:\dev\Katas\TeapartyKata\bin\Debug\TeapartyKata.dll
-C:\dev\Katas\TeapartyKata\bin\Debug\TeapartyKata.pdb
-C:\dev\Katas\TeapartyKata\bin\Debug\nunit.framework.dll
-C:\dev\Katas\TeapartyKata\bin\Debug\nunit.framework.xml
-C:\dev\Katas\TeapartyKata\obj\Debug\TeapartyKata.csprojResolveAssemblyReference.cache
-C:\dev\Katas\TeapartyKata\obj\Debug\TeapartyKata.dll
-C:\dev\Katas\TeapartyKata\obj\Debug\TeapartyKata.pdb

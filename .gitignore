@@ -46,3 +46,11 @@ nuspecs/
 *.suo
 *.user
 *.suo
+*.dll
+*.pdb
+BuildArtifacts/nunit.framework.xml
+BuildArtifacts/TestResults.xml
+packages/NUnit.2.6.3/license.txt
+packages/NUnit.2.6.3/license.txt
+packages/NUnit.2.6.3/license.txt
+packages/NUnit.2.6.3/license.txt

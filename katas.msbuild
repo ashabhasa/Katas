@@ -1,0 +1,33 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	   <ItemGroup>
+         <BuildArtifactsDir Include="BuildArtifacts\" />
+         <SolutionFile Include="Katas.sln" />
+         <NUnitConsole Include="C:\Program Files\NUnit 2.6.3\bin\nunit-console.exe" />
+         <UnitTestsDLL Include="BuildArtifacts\FizzBuzz.dll"/>
+         <!--<UnitTestsDLL Include="BuildArtifacts\RockPaperScissor.dll"/>-->
+         <!--<UnitTestsDLL Include="BuildArtifacts\TeapartyKata.dll"/>-->
+         <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
+       </ItemGroup>
+
+       <PropertyGroup>
+         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+         <BuildPlatform Condition=" '$(BuildPlatform)' == '' ">Any CPU</BuildPlatform>
+       </PropertyGroup>
+
+       <Target Name="Init" DependsOnTargets="Clean">
+         <MakeDir Directories="@(BuildArtifactsDir)" />
+       </Target>
+
+       <Target Name="Clean">
+         <RemoveDir Directories="@(BuildArtifactsDir)" />
+	   </Target>
+
+	   <Target Name="Compile" DependsOnTargets="Init">
+         <MSBuild Projects="@(SolutionFile)" Targets="Rebuild"
+                  Properties="OutDir=%(BuildArtifactsDir.FullPath);Configuration=$(Configuration);Platform=$(BuildPlatform)" />
+       </Target>
+
+       <Target Name="RunUnitTests" DependsOnTargets="Compile">
+         <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL) /xml=@(TestResultsPath)' />
+       </Target>
+</Project>

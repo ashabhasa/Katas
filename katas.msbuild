@@ -9,7 +9,7 @@
          <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
        </ItemGroup>
        
-       <Target Name="OnlyIfExists" Condition="!Exists(@(TestPath))">
+       <Target Name="OnlyIfExists" Condition="!Exists(@(NUnitConsole))">
         <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.2\bin\nunit-console.exe" />
        </Target>
        

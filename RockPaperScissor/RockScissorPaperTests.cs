@@ -84,12 +84,20 @@ namespace RockPaperScissor
         public void KeepRunnigScore()
         {
             var player1 = new Player {GameMove = _paper};
-            var player2 = new Player{GameMove = _rock};
+            var player2 = new Player {GameMove = _rock};
 
-            player1.Vs(player2);
+            var game = new Game(player1, player2);
 
-            Assert.AreEqual(1, player1.GetScore());
-            //Assert.AreEqual(0, player2.GetScore());
+            game.Play();
+            game.Play();
+            game.Play();
+
+
+            player2.GameMove = _scissor;
+            game.Play();
+
+            Assert.AreEqual(3, player1.GetScore());
+            Assert.AreEqual(1, player2.GetScore());
         }
     }
 
@@ -105,6 +113,36 @@ namespace RockPaperScissor
         }
     }
 
+    public class Game
+    {
+        private readonly Player _player1;
+        private readonly Player _player2;
+
+        public Game(Player player1, Player player2)
+        {
+            _player1 = player1;
+            _player2 = player2;
+        }
+
+        public void Play()
+        {
+            if (_player1.GameMove.Beats(_player2.GameMove).GetValueOrDefault())
+            {
+                _player1.Wins(true);
+                _player2.Wins(false);
+            }
+
+            if (_player2.GameMove.Beats(_player1.GameMove).GetValueOrDefault())
+            {
+                _player1.Wins(false);
+                _player2.Wins(true);
+            }
+
+            _player1.Wins(false);
+            _player2.Wins(false);
+        }
+    }
+
     public class Player
     {
         private int _score;
@@ -113,6 +151,11 @@ namespace RockPaperScissor
         public int GetScore()
         {
             return  _score;
+        }
+
+        public void Wins(bool win)
+        {
+            if (win) _score = _score + 1;
         }
 
         public void Vs(Player player2)
@@ -131,6 +174,7 @@ namespace RockPaperScissor
         bool? BeatsPaper();
         bool? BeatsRock();
         bool? BeatsScissor();
+
         bool? Beats(IGameMove move);
     }
 

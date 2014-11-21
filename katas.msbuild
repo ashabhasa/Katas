@@ -8,7 +8,11 @@
          <!--<UnitTestsDLL Include="BuildArtifacts\TeapartyKata.dll"/>-->
          <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
        </ItemGroup>
-
+       
+       <Target Name="OnlyIfExists" Condition="!Exists(@(TestPath))">
+        <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.2\bin\nunit-console.exe" />
+       </Target>
+       
        <PropertyGroup>
          <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
          <BuildPlatform Condition=" '$(BuildPlatform)' == '' ">Any CPU</BuildPlatform>
@@ -27,7 +31,7 @@
                   Properties="OutDir=%(BuildArtifactsDir.FullPath);Configuration=$(Configuration);Platform=$(BuildPlatform)" />
        </Target>
 
-       <Target Name="RunUnitTests" DependsOnTargets="Compile">
+       <Target Name="RunUnitTests" DependsOnTargets="Compile;OnlyIfExists">
          <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL) /xml=@(TestResultsPath)' />
        </Target>
 </Project>

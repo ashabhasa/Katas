@@ -2,10 +2,8 @@
 	   <ItemGroup>
          <BuildArtifactsDir Include="BuildArtifacts\" />
          <SolutionFile Include="Katas.sln" />
-         <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.2\bin\nunit-console.exe" />
-         <UnitTestsDLL Include="BuildArtifacts\FizzBuzz.dll"/>
-         <!--<UnitTestsDLL Include="BuildArtifacts\RockPaperScissor.dll"/>-->
-         <!--<UnitTestsDLL Include="BuildArtifacts\TeapartyKata.dll"/>-->
+         <NUnitConsole Include="C:\Program Files\NUnit 2.6.3\bin\nunit-console.exe" />
+         <UnitTestsDLL Include="BuildArtifacts\FizzBuzz.dll BuildArtifacts\RockPaperScissor.dll BuildArtifacts\TeapartyKata.dll BuildArtifacts\CheckoutKata.dll"/>
          <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
        </ItemGroup>      
        

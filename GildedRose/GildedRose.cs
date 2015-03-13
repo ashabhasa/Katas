@@ -60,7 +60,7 @@ namespace GildedRose
 
 	        if (item.Name != "Sulfuras, Hand of Ragnaros")
 	        {
-	            item.SellIn = item.SellIn - 1;
+	            item.DecrementSellIn(1);
 	        }
 
 	        if (item.SellIn < 0)
@@ -102,11 +102,11 @@ namespace GildedRose
 	        Quality = quality;
 	    }
 
-	    public string Name { get; set; }
+	    public string Name { get; private set; }
 		
-		public int SellIn { get; set; }
+		public int SellIn { get; private set; }
 		
-		public int Quality { get; set; }
+		public int Quality { get; private set; }
 
 	    public void DecrementQuality(int i)
 	    {
@@ -121,6 +121,11 @@ namespace GildedRose
 	    public void ResetQuality()
 	    {
 	        Quality = 0;
+	    }
+
+	    public void DecrementSellIn(int i)
+	    {
+	        SellIn = SellIn - i;
 	    }
 	}
 	

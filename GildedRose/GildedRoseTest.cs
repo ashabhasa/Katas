@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GildedRose
 {
-	[TestFixture()]
+	[TestFixture]
 	public class GildedRoseTest
 	{
 		[Test()]

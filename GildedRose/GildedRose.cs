@@ -15,82 +15,9 @@ namespace GildedRose
 		{
 		    foreach (var item in Items)
 		    {
-		        UpdateItem(item);
+		        item.Update();
 		    }
 		}
-
-	    private static void UpdateItem(Item item)
-	    {
-	        if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
-	        {
-	            if (item.Quality > 0)
-	            {
-	                if (item.Name != "Sulfuras, Hand of Ragnaros")
-	                {
-	                    item.DecrementQuality(1);
-	                }
-	            }
-	        }
-	        else
-	        {
-	            if (item.Quality < 50)
-	            {
-	                item.IncrementQuality(1);
-
-	                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-	                {
-	                    if (item.SellIn < 11)
-	                    {
-	                        if (item.Quality < 50)
-	                        {
-	                            item.IncrementQuality(1);
-	                        }
-	                    }
-
-	                    if (item.SellIn < 6)
-	                    {
-	                        if (item.Quality < 50)
-	                        {
-	                            item.IncrementQuality(1);
-	                        }
-	                    }
-	                }
-	            }
-	        }
-
-	        if (item.Name != "Sulfuras, Hand of Ragnaros")
-	        {
-	            item.DecrementSellIn(1);
-	        }
-
-	        if (item.SellIn < 0)
-	        {
-	            if (item.Name != "Aged Brie")
-	            {
-	                if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-	                {
-	                    if (item.Quality > 0)
-	                    {
-	                        if (item.Name != "Sulfuras, Hand of Ragnaros")
-	                        {
-	                            item.DecrementQuality(1);
-	                        }
-	                    }
-	                }
-	                else
-	                {
-	                    item.ResetQuality();
-	                }
-	            }
-	            else
-	            {
-	                if (item.Quality < 50)
-	                {
-	                    item.IncrementQuality(1);
-	                }
-	            }
-	        }
-	    }
 	}
 	
 	public class Item
@@ -126,6 +53,79 @@ namespace GildedRose
 	    public void DecrementSellIn(int i)
 	    {
 	        SellIn = SellIn - i;
+	    }
+
+	    public void Update()
+	    {
+	        if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
+	        {
+	            if (Quality > 0)
+	            {
+	                if (Name != "Sulfuras, Hand of Ragnaros")
+	                {
+	                    DecrementQuality(1);
+	                }
+	            }
+	        }
+	        else
+	        {
+	            if (Quality < 50)
+	            {
+	                IncrementQuality(1);
+
+	                if (Name == "Backstage passes to a TAFKAL80ETC concert")
+	                {
+	                    if (SellIn < 11)
+	                    {
+	                        if (Quality < 50)
+	                        {
+	                            IncrementQuality(1);
+	                        }
+	                    }
+
+	                    if (SellIn < 6)
+	                    {
+	                        if (Quality < 50)
+	                        {
+	                            IncrementQuality(1);
+	                        }
+	                    }
+	                }
+	            }
+	        }
+
+	        if (Name != "Sulfuras, Hand of Ragnaros")
+	        {
+	            DecrementSellIn(1);
+	        }
+
+	        if (SellIn < 0)
+	        {
+	            if (Name != "Aged Brie")
+	            {
+	                if (Name != "Backstage passes to a TAFKAL80ETC concert")
+	                {
+	                    if (Quality > 0)
+	                    {
+	                        if (Name != "Sulfuras, Hand of Ragnaros")
+	                        {
+	                            DecrementQuality(1);
+	                        }
+	                    }
+	                }
+	                else
+	                {
+	                    ResetQuality();
+	                }
+	            }
+	            else
+	            {
+	                if (Quality < 50)
+	                {
+	                    IncrementQuality(1);
+	                }
+	            }
+	        }
 	    }
 	}
 	

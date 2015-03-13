@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissor", "RockPap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutKata", "CheckoutKata\CheckoutKata.csproj", "{07045A07-9A3D-427F-BF96-B9F11D9EEFEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose\GildedRose.csproj", "{C66444E6-DAA3-49A8-A377-94DE875CB3D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{07045A07-9A3D-427F-BF96-B9F11D9EEFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07045A07-9A3D-427F-BF96-B9F11D9EEFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07045A07-9A3D-427F-BF96-B9F11D9EEFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C66444E6-DAA3-49A8-A377-94DE875CB3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66444E6-DAA3-49A8-A377-94DE875CB3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66444E6-DAA3-49A8-A377-94DE875CB3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66444E6-DAA3-49A8-A377-94DE875CB3D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

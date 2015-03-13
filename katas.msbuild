@@ -26,6 +26,6 @@
        </Target>
 
        <Target Name="RunUnitTests" DependsOnTargets="Compile">
-         <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL) /xml=@(TestResultsPath)' />
+         <Exec Command='"@(NUnitConsole)" /nologo @(UnitTestsDLL) /xml=@(TestResultsPath)' />
        </Target>
 </Project>

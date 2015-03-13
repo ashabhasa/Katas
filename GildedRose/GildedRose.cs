@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GildedRose
 {
@@ -19,6 +20,33 @@ namespace GildedRose
 		    }
 		}
 	}
+
+    public class AgedBrieItem : Item
+    {
+        public AgedBrieItem(int sellIn, int quality)
+            : base("Aged Brie", sellIn, quality)
+        {
+           
+        }
+
+        public override void Update()
+        {
+            if (Quality < 50)
+            {
+                IncrementQuality(1);
+            }
+
+            DecrementSellIn(1);
+
+            if (SellIn < 0)
+            {
+                if (Quality < 50)
+                {
+                    IncrementQuality(1);
+                }
+            }
+        }
+    }
 	
 	public class Item
 	{
@@ -55,9 +83,9 @@ namespace GildedRose
 	        SellIn = SellIn - i;
 	    }
 
-	    public void Update()
+	    public virtual void Update()
 	    {
-	        if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
+	        if (Name != "Backstage passes to a TAFKAL80ETC concert")
 	        {
 	            if (Quality > 0)
 	            {
@@ -101,29 +129,19 @@ namespace GildedRose
 
 	        if (SellIn < 0)
 	        {
-	            if (Name != "Aged Brie")
+	            if (Name != "Backstage passes to a TAFKAL80ETC concert")
 	            {
-	                if (Name != "Backstage passes to a TAFKAL80ETC concert")
+	                if (Quality > 0)
 	                {
-	                    if (Quality > 0)
+	                    if (Name != "Sulfuras, Hand of Ragnaros")
 	                    {
-	                        if (Name != "Sulfuras, Hand of Ragnaros")
-	                        {
-	                            DecrementQuality(1);
-	                        }
+	                        DecrementQuality(1);
 	                    }
-	                }
-	                else
-	                {
-	                    ResetQuality();
 	                }
 	            }
 	            else
 	            {
-	                if (Quality < 50)
-	                {
-	                    IncrementQuality(1);
-	                }
+	                ResetQuality();
 	            }
 	        }
 	    }

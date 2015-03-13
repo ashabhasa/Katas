@@ -46,6 +46,7 @@
     <Compile Include="GildedRose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SpikeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

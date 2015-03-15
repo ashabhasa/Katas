@@ -6,15 +6,15 @@ namespace GildedRose
 {
 	class GildedRose
 	{
-		IList<Item> Items;
-		public GildedRose(IList<Item> Items) 
+	    readonly IList<Item> _items;
+		public GildedRose(IList<Item> items) 
 		{
-			this.Items = Items;
+			_items = items;
 		}
 		
 		public void UpdateQuality()
 		{
-		    foreach (var item in Items)
+		    foreach (var item in _items)
 		    {
 		        item.Update();
 		    }
@@ -31,14 +31,10 @@ namespace GildedRose
 
         public override void Update()
         {
-            if (Quality < 50)
-            {
-                IncrementQuality(1);
-            }
-
+            IncrementQuality(1);
             DecrementSellIn(1);
 
-            if (Quality < 50 && SellIn < 0)
+            if (SellIn < 0)
             {
                 IncrementQuality(1);
             }
@@ -100,16 +96,16 @@ namespace GildedRose
 
         public override void Update()
         {
-            if (Quality > 0)
-            {
-                DecrementQuality(2);
-            }
+            DecrementQuality(2);
             DecrementSellIn(1);
         }
     }
 	
 	public class Item
 	{
+	    private const int MaxQualityValue = 50;
+	    private const int MinQualityValue = 0;
+
 	    public Item(string name, Int32 sellIn, Int32 quality)
 	    {
 	        Name = name;
@@ -133,12 +129,15 @@ namespace GildedRose
 
 	    protected void IncrementQuality(int quantity)
 	    {
-	        Quality = Quality + quantity;
+	        if (Quality + quantity <= MaxQualityValue)
+	            Quality = Quality + quantity;
+	        else
+                Quality = MaxQualityValue;
 	    }
 
 	    protected void ResetQuality()
 	    {
-	        Quality = 0;
+	        Quality = MinQualityValue;
 	    }
 
 	    protected void DecrementSellIn(int quantity)
@@ -148,14 +147,14 @@ namespace GildedRose
 
 	    public virtual void Update()
 	    {
-	        if (Quality > 0)
+	        if (Quality > MinQualityValue)
 	        {
 	            DecrementQuality(1);
 	        }
 
 	        DecrementSellIn(1);
 
-	        if (Quality > 0 && SellIn < 0)
+	        if (Quality > MinQualityValue && SellIn < 0)
 	        {
 	            DecrementQuality(1);
 	        }

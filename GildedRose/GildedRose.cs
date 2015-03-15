@@ -90,6 +90,23 @@ namespace GildedRose
             //do nothing
         }
     }
+
+    public class ConjuredItem : Item
+    {
+        public ConjuredItem(int sellIn, int quality)
+            : base("Conjured Mana Cake", sellIn, quality)
+        {
+        }
+
+        public override void Update()
+        {
+            if (Quality > 0)
+            {
+                DecrementQuality(2);
+            }
+            DecrementSellIn(1);
+        }
+    }
 	
 	public class Item
 	{
@@ -108,7 +125,10 @@ namespace GildedRose
 
 	    public void DecrementQuality(int quantity)
 	    {
-	        Quality = Quality - quantity;
+	        if (Quality >= quantity)
+	            Quality = Quality - quantity;
+	        else
+	            ResetQuality();
 	    }
 
 	    public void IncrementQuality(int quantity)

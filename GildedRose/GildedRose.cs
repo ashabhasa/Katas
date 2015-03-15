@@ -123,7 +123,7 @@ namespace GildedRose
 		
 		public int Quality { get; private set; }
 
-	    public void DecrementQuality(int quantity)
+	    protected void DecrementQuality(int quantity)
 	    {
 	        if (Quality >= quantity)
 	            Quality = Quality - quantity;
@@ -131,17 +131,17 @@ namespace GildedRose
 	            ResetQuality();
 	    }
 
-	    public void IncrementQuality(int quantity)
+	    protected void IncrementQuality(int quantity)
 	    {
 	        Quality = Quality + quantity;
 	    }
 
-	    public void ResetQuality()
+	    protected void ResetQuality()
 	    {
 	        Quality = 0;
 	    }
 
-	    public void DecrementSellIn(int quantity)
+	    protected void DecrementSellIn(int quantity)
 	    {
 	        SellIn = SellIn - quantity;
 	    }

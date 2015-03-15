@@ -18,8 +18,7 @@ namespace GildedRose
 		        new BackstageItem(15, 20),
 		        new BackstageItem(10, 49),
 		        new BackstageItem(5, 49),
-		        // this conjured item does not work properly yet
-		        new Item("Conjured Mana Cake", 3, 6)
+		        new ConjuredItem(3, 6)
 		    };
 
 			var app = new GildedRose(items);

@@ -21,7 +21,6 @@ namespace GildedRose
         {
             var sb = new StringWriter();
             Console.SetOut(sb);
-
             Program.Main(new[] {""});
             return sb.ToString();
         }

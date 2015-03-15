@@ -85,6 +85,19 @@ namespace GildedRose
             }
         }
     }
+
+    public class SulfurasItem : Item
+    {
+        public SulfurasItem(int sellIn, int quality)
+            : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
+        {
+        }
+
+        public override void Update()
+        {
+            //do nothing
+        }
+    }
 	
 	public class Item
 	{
@@ -123,32 +136,20 @@ namespace GildedRose
 
 	    public virtual void Update()
 	    {
-
 	        if (Quality > 0)
 	        {
-	            if (Name != "Sulfuras, Hand of Ragnaros")
+	            DecrementQuality(1);
+	        }
+
+	        DecrementSellIn(1);
+
+	        if (SellIn < 0)
+	        {
+	            if (Quality > 0)
 	            {
 	                DecrementQuality(1);
 	            }
 	        }
-
-	        if (Name != "Sulfuras, Hand of Ragnaros")
-	        {
-	            DecrementSellIn(1);
-	        }
-
-	        if (SellIn < 0)
-	        {
-
-	            if (Quality > 0)
-	            {
-	                if (Name != "Sulfuras, Hand of Ragnaros")
-	                {
-	                    DecrementQuality(1);
-	                }
-	            }
-	        }
 	    }
 	}
-	
 }

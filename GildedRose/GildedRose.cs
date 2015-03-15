@@ -47,6 +47,44 @@ namespace GildedRose
             }
         }
     }
+
+    public class BackstageItem : Item
+    {
+        public BackstageItem(int sellIn, int quality)
+            : base("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        {
+        }
+
+        public override void Update()
+        {
+            if (Quality < 50)
+            {
+                IncrementQuality(1);
+
+                if (SellIn < 11)
+                {
+                    if (Quality < 50)
+                    {
+                        IncrementQuality(1);
+                    }
+                }
+
+                if (SellIn < 6)
+                {
+                    if (Quality < 50)
+                    {
+                        IncrementQuality(1);
+                    }
+                }
+            }
+            DecrementSellIn(1);
+
+            if (SellIn < 0)
+            {
+                ResetQuality();
+            }
+        }
+    }
 	
 	public class Item
 	{
@@ -85,40 +123,12 @@ namespace GildedRose
 
 	    public virtual void Update()
 	    {
-	        if (Name != "Backstage passes to a TAFKAL80ETC concert")
-	        {
-	            if (Quality > 0)
-	            {
-	                if (Name != "Sulfuras, Hand of Ragnaros")
-	                {
-	                    DecrementQuality(1);
-	                }
-	            }
-	        }
-	        else
-	        {
-	            if (Quality < 50)
-	            {
-	                IncrementQuality(1);
 
-	                if (Name == "Backstage passes to a TAFKAL80ETC concert")
-	                {
-	                    if (SellIn < 11)
-	                    {
-	                        if (Quality < 50)
-	                        {
-	                            IncrementQuality(1);
-	                        }
-	                    }
-
-	                    if (SellIn < 6)
-	                    {
-	                        if (Quality < 50)
-	                        {
-	                            IncrementQuality(1);
-	                        }
-	                    }
-	                }
+	        if (Quality > 0)
+	        {
+	            if (Name != "Sulfuras, Hand of Ragnaros")
+	            {
+	                DecrementQuality(1);
 	            }
 	        }
 
@@ -129,19 +139,13 @@ namespace GildedRose
 
 	        if (SellIn < 0)
 	        {
-	            if (Name != "Backstage passes to a TAFKAL80ETC concert")
+
+	            if (Quality > 0)
 	            {
-	                if (Quality > 0)
+	                if (Name != "Sulfuras, Hand of Ragnaros")
 	                {
-	                    if (Name != "Sulfuras, Hand of Ragnaros")
-	                    {
-	                        DecrementQuality(1);
-	                    }
+	                    DecrementQuality(1);
 	                }
-	            }
-	            else
-	            {
-	                ResetQuality();
 	            }
 	        }
 	    }

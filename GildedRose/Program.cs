@@ -32,12 +32,11 @@ namespace GildedRose
 				
                 foreach (var item in items)
                 {
-                    item.ToString();
+                    System.Console.WriteLine(item.ToString());
                 }
 			    System.Console.WriteLine("");
 				app.UpdateQuality();
 			}
-
 		}
 	}
 }

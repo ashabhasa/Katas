@@ -152,9 +152,9 @@ namespace GildedRose
 	        }
 	    }
 
-	    public void ToString()
+	    public override string ToString()
 	    {
-	        System.Console.WriteLine(Name + ", " + SellIn + ", " + Quality);
+	        return Name + ", " + SellIn + ", " + Quality;
 	    }
 	}
 }

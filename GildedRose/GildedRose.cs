@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using NUnit.Framework;
 
 namespace GildedRose
 {
@@ -110,10 +111,10 @@ namespace GildedRose
 
 	    protected void DecrementQuality(int quantity)
 	    {
-	        if (Quality >= quantity)
+	        if (Quality - quantity >= MinQualityValue)
 	            Quality = Quality - quantity;
 	        else
-	            ResetQuality();
+	            Quality = MinQualityValue;
 	    }
 
 	    protected void IncrementQuality(int quantity)
@@ -136,17 +137,13 @@ namespace GildedRose
 
 	    public virtual void Update()
 	    {
-	        if (Quality > MinQualityValue)
-	        {
-	            DecrementQuality(1);
-	        }
-
+	        var decrementQuality = 1;
 	        DecrementSellIn(1);
 
-	        if (Quality > MinQualityValue && SellIn < 0)
-	        {
-	            DecrementQuality(1);
-	        }
+	        if (SellIn < 0) 
+                decrementQuality = 2;
+
+	        DecrementQuality(decrementQuality);
 	    }
 
 	    public override string ToString()

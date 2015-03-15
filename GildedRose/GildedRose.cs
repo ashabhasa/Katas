@@ -38,12 +38,9 @@ namespace GildedRose
 
             DecrementSellIn(1);
 
-            if (SellIn < 0)
+            if (Quality < 50 && SellIn < 0)
             {
-                if (Quality < 50)
-                {
-                    IncrementQuality(1);
-                }
+                IncrementQuality(1);
             }
         }
     }
@@ -60,23 +57,18 @@ namespace GildedRose
             if (Quality < 50)
             {
                 IncrementQuality(1);
-
-                if (SellIn < 11)
-                {
-                    if (Quality < 50)
-                    {
-                        IncrementQuality(1);
-                    }
-                }
-
-                if (SellIn < 6)
-                {
-                    if (Quality < 50)
-                    {
-                        IncrementQuality(1);
-                    }
-                }
             }
+
+            if (Quality < 50 && SellIn < 11)
+            {
+                IncrementQuality(1);
+            }
+
+            if (Quality < 50 && SellIn < 6)
+            {
+                IncrementQuality(1);
+            }
+
             DecrementSellIn(1);
 
             if (SellIn < 0)
@@ -143,12 +135,9 @@ namespace GildedRose
 
 	        DecrementSellIn(1);
 
-	        if (SellIn < 0)
+	        if (Quality > 0 && SellIn < 0)
 	        {
-	            if (Quality > 0)
-	            {
-	                DecrementQuality(1);
-	            }
+	            DecrementQuality(1);
 	        }
 	    }
 

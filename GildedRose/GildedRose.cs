@@ -106,14 +106,14 @@ namespace GildedRose
 		
 		public int Quality { get; private set; }
 
-	    public void DecrementQuality(int i)
+	    public void DecrementQuality(int quantity)
 	    {
-	        Quality = Quality - i;
+	        Quality = Quality - quantity;
 	    }
 
-	    public void IncrementQuality(int i)
+	    public void IncrementQuality(int quantity)
 	    {
-	        Quality = Quality + i;
+	        Quality = Quality + quantity;
 	    }
 
 	    public void ResetQuality()
@@ -121,9 +121,9 @@ namespace GildedRose
 	        Quality = 0;
 	    }
 
-	    public void DecrementSellIn(int i)
+	    public void DecrementSellIn(int quantity)
 	    {
-	        SellIn = SellIn - i;
+	        SellIn = SellIn - quantity;
 	    }
 
 	    public virtual void Update()

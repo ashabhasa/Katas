@@ -31,8 +31,8 @@ namespace GildedRose
 
         public override void Update()
         {
-            var qualityIncrement = (SellIn < 0) ? 2 : 1;
             DecrementSellIn(1);
+            var qualityIncrement = (SellIn < 0) ? 2 : 1;
             IncrementQuality(qualityIncrement);
         }
     }
@@ -46,21 +46,14 @@ namespace GildedRose
 
         public override void Update()
         {
-            if (Quality < 50)
-            {
-                IncrementQuality(1);
-            }
-
-            if (Quality < 50 && SellIn < 11)
-            {
-                IncrementQuality(1);
-            }
-
-            if (Quality < 50 && SellIn < 6)
-            {
-                IncrementQuality(1);
-            }
-
+            var incrementQuality = 1;
+            
+            if (SellIn < 6)
+                incrementQuality = 3;
+            else if (SellIn < 11)
+                incrementQuality = 2;
+            
+            IncrementQuality(incrementQuality);
             DecrementSellIn(1);
 
             if (SellIn < 0)

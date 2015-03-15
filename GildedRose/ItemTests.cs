@@ -43,9 +43,27 @@ namespace GildedRose
 
         [TestCase(5, 7)]
         [TestCase(-1, 8)]
+        [TestCase(0, 8)]
         public void UpdateAgedBrieItem(int sellIn, int expectedQuality)
         {
             var item = new AgedBrieItem(sellIn, 6);
+
+            item.Update();
+
+            Assert.AreEqual(expectedQuality, item.Quality);
+        }
+
+        [TestCase(12, 7)]
+        [TestCase(11, 7)]
+        [TestCase(10, 8)]
+        [TestCase(6, 8)]
+        [TestCase(5, 9)]
+        [TestCase(1, 9)]
+        [TestCase(0, 0)]
+        [TestCase(-1, 0)]
+        public void UpdateBackstageItem(int sellIn, int expectedQuality)
+        {
+            var item = new BackstageItem(sellIn, 6);
 
             item.Update();
 

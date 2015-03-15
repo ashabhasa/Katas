@@ -3,14 +3,14 @@
 namespace GildedRose
 {
     [TestFixture]
-    public class ConjuredItemTests
+    public class ItemTests
     {
         private const int SellIn = 10;
         private const int Quality = 20;
 
 
         [Test]
-        public void Update()
+        public void UpdateConjuredItem()
         {
             var conjuredItem = new ConjuredItem(SellIn, Quality);
 
@@ -37,6 +37,17 @@ namespace GildedRose
             var item = new DummyItem("Item1", 5, 45);
 
             item.Increment(quantity);
+
+            Assert.AreEqual(expectedQuality, item.Quality);
+        }
+
+        [TestCase(5, 7)]
+        [TestCase(-1, 8)]
+        public void UpdateAgedBrieItem(int sellIn, int expectedQuality)
+        {
+            var item = new AgedBrieItem(sellIn, 6);
+
+            item.Update();
 
             Assert.AreEqual(expectedQuality, item.Quality);
         }

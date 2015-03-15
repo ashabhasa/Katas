@@ -31,13 +31,9 @@ namespace GildedRose
 
         public override void Update()
         {
-            IncrementQuality(1);
+            var qualityIncrement = (SellIn < 0) ? 2 : 1;
             DecrementSellIn(1);
-
-            if (SellIn < 0)
-            {
-                IncrementQuality(1);
-            }
+            IncrementQuality(qualityIncrement);
         }
     }
 

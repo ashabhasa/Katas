@@ -151,5 +151,10 @@ namespace GildedRose
 	            }
 	        }
 	    }
+
+	    public void ToString()
+	    {
+	        System.Console.WriteLine(Name + ", " + SellIn + ", " + Quality);
+	    }
 	}
 }

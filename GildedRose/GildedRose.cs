@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using NUnit.Framework;
 
 namespace GildedRose
 {
-	class GildedRose
+    class GildedRose
 	{
 	    readonly IList<Item> _items;
 		public GildedRose(IList<Item> items) 
